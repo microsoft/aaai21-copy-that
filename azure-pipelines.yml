@@ -8,4 +8,9 @@ steps:
     alertWarningLevel: 'High'
 - task: CredScan@2
   inputs:
-    toolMajorVersion: 'V1'
+    toolMajorVersion: 'V2'
+- task: securedevelopmentteam.vss-secure-development-tools.build-task-semmle.Semmle@0
+  displayName: 'Run Semmle (python)'
+  inputs:
+    language: python
+
