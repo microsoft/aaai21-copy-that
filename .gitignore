@@ -1,0 +1,30 @@
+# ts
+**/node_modules/
+/webroot/scripts/*.js
+
+# vim
+**/*.swp
+
+# python
+**/*.pyc
+**/__pycache__/
+
+# jupyter
+**/.ipynb_checkpoints/
+
+# data
+!tests/data/
+*.csv
+
+# environment
+*.ftpconfig
+
+azure_auth.json
+.idea
+/src/wandb
+*.html
+*.pkl.gz
+*.pkl
+*.pdf
+
+.vscode

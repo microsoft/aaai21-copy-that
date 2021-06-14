@@ -1,0 +1,11 @@
+pool:
+  vmImage: 'vs2017-win2016'
+steps:
+- task: ComponentGovernanceComponentDetection@0
+  inputs:
+    scanType: 'Register'
+    verbosity: 'Verbose'
+    alertWarningLevel: 'High'
+- task: CredScan@2
+  inputs:
+    toolMajorVersion: 'V1'

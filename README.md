@@ -1,14 +1,50 @@
-# Project
+# Copy that! Editing Sequences by Copying Spans
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+### Prerequisites
+Python 3.6 or higher is needed with PyTorch 1.2 or higher. The `dpu-utils` package is also necessary:
+```shell
+> pip3 install dpu-utils
+```
 
-As the maintainer of this project, please make a few updates:
+### How to run
+* First convert the data to the appropriate format. `data/loading.py` shows a few of the possible methods. The [`JSONL`](http://jsonlines.org/) style is probably the easiest one. This format is a `.jsonl.gz` where each line has the format:
+    ```json
+    {
+        "input_sequence": ["list", "of", "input", "tokens", ...],
+        "output_sequence": ["list", "of", "output", "tokens", ...]
+    }
+    ```
+    Optionally, you can have a `"provenance"` field and an `"edit_type"` field.
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+    To define the type of data used in training/testing, use the `--data-type` option in the command line.
+
+* Then run training
+    ```shell
+    > python3 model/train.py --data-type=jsonl path/to/train/data /path/to/validation/data <modelname> ./model-save/filename.pkl.gz
+    ```
+    There are multiple possible `modelname`, but commonly you'd like to use the `baseseq2seq` and `basecopyspan`.
+
+    > To run you the code need Python3 and PyTorch. Make sure that your `PYTHONPATH` environment variable points to the root folder of this repository.
+
+* Output parallel predictions.
+    ```shell
+    > python3 model/outputparallelpredictions.py --data-type=jsonl ./model-save/filename.pkl.gz path/to/test/data path/for/output/txt/file_prefix
+    ```
+    This will output the before/after predictions in separate files in two files ending in `before.txt` and `after.txt`.
+
+### Available Models
+Models are defined in `editrepresentationmodels.py` and their constructor is invoked in `train.py`.
+
+Editing Models:
+* `basecopyseq2seq` A GRU-based sequence2sequence model with attention and (simple) copying.
+* `basecopyspan` A GRU-based sequence2sequence model with span-copying.
+
+Edit Representation Models:
+
+Edit representation models follow the structure of the work of [Yin et al.](https://arxiv.org/abs/1810.13337).
+* `copyseq2seq` A GRU-based edit representation model with attention and (simple) copying.
+* `copyspan` A GRU-based edit representation model with span-copying.
+
 
 ## Contributing
 

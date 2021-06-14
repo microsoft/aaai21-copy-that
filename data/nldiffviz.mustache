@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <title>Diff Visualizations</title>
+    <style>
+        .diff {
+            border: 1px solid #cccccc;
+            background: none repeat scroll 0 0 #f8f8f8;
+            font-family: 'Bitstream Vera Sans Mono','Courier',monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: normal;
+            word-wrap: break-word;
+            margin:2em 2em 2em 2em;
+        }
+        .diff div:hover {
+            background-color:#ffc;
+        }
+        .diff .control {
+            background-color: #eaf2f5;
+            color: #999999;
+        }
+        .diff .insert {
+            background-color: #ddffdd;
+            color: #000000;
+        }
+        .diff .insert .highlight {
+            background-color: #aaffaa;
+            color: #000000;
+        }
+        .diff .delete {
+            background-color: #ffdddd;
+            color: #000000;
+        }
+        .diff .delete .highlight {
+            background-color: #ffaaaa;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+{{#samples}}
+    <h5>Edit {{num}} </h5>
+    <h6>NL: {{nl}}</h6>
+    <h10><a href={{link}}>{{link}}</a></h10>
+    {{{diff}}}
+
+    {{#nns}}
+
+        <h6>Nearest neighbor (distance: {{dist}})</h6>
+        <h7>NL: {{nl}}</h7>
+        <h10><a href={{link}}>{{link}}</a></h10>
+        {{{diff}}}
+    {{/nns}}
+    <hr/>
+{{/samples}}
+</body>
+</html>
